@@ -1,2 +1,4 @@
-# LedTicker
-LedTicker code
+LedTicker
+=========
+
+Java LedTicker.
