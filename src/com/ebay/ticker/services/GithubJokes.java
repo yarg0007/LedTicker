@@ -111,7 +111,7 @@ public class GithubJokes extends Thread implements ServiceOutput,
 				if (numJokeString.startsWith("display:")) {
 					String count = numJokeString.substring(8);
 					try {
-						Integer.valueOf(count);
+						numJokes = Integer.valueOf(count);
 					} catch (NumberFormatException nfe) {
 						numJokes = 3;
 					}
