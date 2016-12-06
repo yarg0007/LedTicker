@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -130,6 +132,8 @@ public class GithubJokes extends Thread implements ServiceOutput,
 						int total = numJokes;
 						if (numJokes > itemTags.getLength()) {
 							total = itemTags.getLength();
+						} else if (numJokes <= 0) {
+							total = itemTags.getLength();
 						}
 						
 						for (int i = 0; i < total; i++) {
@@ -143,6 +147,12 @@ public class GithubJokes extends Thread implements ServiceOutput,
 //									"                                       ";
 							
 							messages.add(joke);
+						}
+						
+						// If num jokes <= 0 then randomize the
+						// full list of jokes.
+						if (numJokes <= 0) {
+							Collections.shuffle(messages);
 						}
 					}
 				}
