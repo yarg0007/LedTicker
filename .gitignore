@@ -1,1 +1,4 @@
 LedTicker.jar
+/bin/
+.classpath
+.project
