@@ -2,3 +2,4 @@ LedTicker.jar
 /bin/
 .classpath
 .project
+.DS_Store
