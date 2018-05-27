@@ -165,7 +165,7 @@ ServiceState {
 			try {
 				Thread.sleep(UPDATE_INTERVAL);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println("GithubJokes thread interrupted.");
 			}
 		}
 	}

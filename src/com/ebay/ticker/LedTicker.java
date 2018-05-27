@@ -1,22 +1,13 @@
 package com.ebay.ticker;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.Scanner;
 
 /**
  * https://github.com/rxtx/rxtx
  */
-@SuppressWarnings("serial")
-public class LedTicker extends JFrame implements ActionListener {
+public class LedTicker {
 
 	private TickerLoop loop;
-
-	private JButton stopButton;
 
 	/**
 	 * @param args
@@ -24,52 +15,37 @@ public class LedTicker extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 
 		LedTicker ticker = new LedTicker();
+		TickerGui tickerGui = null;
+
+		for (String arg : args) {
+			System.out.println(arg);
+			if (arg.equalsIgnoreCase("useGui=true")) {
+				tickerGui = new TickerGui(ticker.getTickerLoop());
+			}
+		}
+
+		// TODO: command line interface execution option
+		// TODO: publish ip address and network information for button press
+
 		ticker.startTickerLoop();
+
+		if (tickerGui == null) {
+			Scanner keyboard = new Scanner(System.in);
+			System.out.println("Press enter to quit.");
+			String input = keyboard.nextLine();
+			ticker.getTickerLoop().stopTickerLoop();
+		}
 	}
 
 	public LedTicker() {
-
 		loop = new TickerLoop();
-
-		this.setSize(300, 200);
-		this.setTitle("LedTicker App");
-
-		JPanel panel = new JPanel();
-		stopButton = new JButton("STOP");
-		Dimension stopButtonSize = new Dimension(280, 160);
-		stopButton.setSize(stopButtonSize);
-		stopButton.setPreferredSize(stopButtonSize);
-		stopButton.setMinimumSize(stopButtonSize);
-		stopButton.setMaximumSize(stopButtonSize);
-		stopButton.addActionListener(this);
-
-		panel.add(stopButton);
-		this.add(panel);
-
 	}
 
 	public void startTickerLoop() {
 		loop.startTickerLoop();
-		this.setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-
-		if (ae.getSource() == stopButton) {
-			this.setVisible(false);
-			loop.stopTickerLoop();
-			System.out.println("Shutting down the LedTicker... Please wait.");
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			System.out.println("LedTicker process terminated.");
-			System.exit(0);
-		}
+	public TickerLoop getTickerLoop() {
+		return loop;
 	}
-
 }

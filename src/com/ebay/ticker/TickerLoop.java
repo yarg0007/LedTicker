@@ -65,6 +65,7 @@ public class TickerLoop extends Thread {
 		githubJokes.stopService();
 		running = false;
 		this.interrupt();
+		System.out.println("Ticker loop - terminate loop requested.");
 	}
 
 	@Override
@@ -100,13 +101,17 @@ public class TickerLoop extends Thread {
 
 		}
 
+		System.out.println("Exited the ticker loop, running = false");
+
 		try {
-			serialConnection.closeConnection();
+			if (serialConnection != null) {
+				serialConnection.closeConnection();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("Success");
+		System.out.println("Success - ticker loop terminated.");
 	}
 
 	// -------------------------------------------------------------------------
