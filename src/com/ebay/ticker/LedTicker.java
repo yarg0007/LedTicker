@@ -24,7 +24,6 @@ public class LedTicker {
 			}
 		}
 
-		// TODO: command line interface execution option
 		// TODO: publish ip address and network information for button press
 
 		ticker.startTickerLoop();
