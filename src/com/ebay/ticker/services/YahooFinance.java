@@ -130,13 +130,11 @@ public class YahooFinance extends Thread implements ServiceOutput, ServiceState 
 	// Required by ServiceState
 	// -------------------------------------------------------------------------
 
-	@Override
 	public void startService() {
 		running = true;
 		this.start();
 	}
 
-	@Override
 	public void stopService() {
 		running = false;
 		this.interrupt();
@@ -146,7 +144,6 @@ public class YahooFinance extends Thread implements ServiceOutput, ServiceState 
 	// Required by ServiceOutput
 	// -------------------------------------------------------------------------
 
-	@Override
 	public String getTickerMessage() {
 		return message;
 	}

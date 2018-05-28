@@ -3,3 +3,5 @@ LedTicker.jar
 .classpath
 .project
 .DS_Store
+/target/
+.settings/
