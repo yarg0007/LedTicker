@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import com.ebay.ticker.serial.SerialConnection;
 import com.ebay.ticker.services.GithubJokes;
+import com.ebay.ticker.services.NetworkInfo;
 import com.ebay.ticker.util.AlphaProtocolEncoder;
 
 import gnu.io.NoSuchPortException;
@@ -22,6 +23,8 @@ public class TickerLoop extends Thread {
 	DateFormat dateFormat;
 
 	private GithubJokes githubJokes;
+
+	private NetworkInfo networkInfo;
 
 	private boolean running;
 
@@ -48,6 +51,9 @@ public class TickerLoop extends Thread {
 
 		githubJokes = new GithubJokes();
 		githubJokes.startService();
+
+		networkInfo = new NetworkInfo();
+		networkInfo.startService();
 	}
 
 	/**
@@ -63,6 +69,7 @@ public class TickerLoop extends Thread {
 	 */
 	public void stopTickerLoop() {
 		githubJokes.stopService();
+		networkInfo.stopService();
 		running = false;
 		this.interrupt();
 		System.out.println("Ticker loop - terminate loop requested.");
@@ -84,8 +91,12 @@ public class TickerLoop extends Thread {
 
 		while (running) {
 
+			// TODO: if gpio button pressed display the network info. Otherwise, display joke.
 
-			String message = githubJokes.getTickerMessage();
+			String message;
+
+			message = githubJokes.getTickerMessage();
+
 			sendMessage(message);
 
 
