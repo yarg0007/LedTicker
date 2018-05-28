@@ -174,13 +174,11 @@ ServiceState {
 	// Required by ServiceState
 	// -------------------------------------------------------------------------
 
-	@Override
 	public void startService() {
 		running = true;
 		this.start();
 	}
 
-	@Override
 	public void stopService() {
 		running = false;
 		this.interrupt();
@@ -190,7 +188,6 @@ ServiceState {
 	// Required by ServiceOutput
 	// -------------------------------------------------------------------------
 
-	@Override
 	public String getTickerMessage() {
 
 		String message = "";

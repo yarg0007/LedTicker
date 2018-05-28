@@ -15,17 +15,14 @@ public class NetworkInfo implements ServiceOutput, ServiceState {
 		System.out.println(networkInfo.getTickerMessage());
 	}
 
-	@Override
 	public void startService() {
 
 	}
 
-	@Override
 	public void stopService() {
 
 	}
 
-	@Override
 	public String getTickerMessage() {
 		return displayInterfaceInformation();
 	}

@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.ebay.pi.GpioButton;
 import com.ebay.ticker.serial.SerialConnection;
 import com.ebay.ticker.services.GithubJokes;
 import com.ebay.ticker.services.NetworkInfo;
@@ -21,6 +22,8 @@ public class TickerLoop extends Thread {
 	private SerialConnection serialConnection;
 
 	DateFormat dateFormat;
+
+	private GpioButton gpioButton;
 
 	private GithubJokes githubJokes;
 
@@ -48,6 +51,8 @@ public class TickerLoop extends Thread {
 		}
 
 		dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy h:mm a");
+
+		gpioButton = new GpioButton();
 
 		githubJokes = new GithubJokes();
 		githubJokes.startService();
@@ -93,9 +98,13 @@ public class TickerLoop extends Thread {
 
 			// TODO: if gpio button pressed display the network info. Otherwise, display joke.
 
-			String message;
+			String message = "";
 
-			message = githubJokes.getTickerMessage();
+			if (gpioButton.wasButtonPressed()) {
+				message = networkInfo.getTickerMessage();
+			} else {
+				message = githubJokes.getTickerMessage();
+			}
 
 			sendMessage(message);
 
