@@ -15,3 +15,13 @@ Command line program arguments: useGui=true to turn on GUI otherwise the command
 ```
 java LedTicker useGui=true
 ```
+
+Build and package as you would for a normal maven project.
+```
+mvn clean package
+```
+
+Run the application with:
+```
+java -jar target/LedTicker-jar-with-dependencies.jar
+```
