@@ -25,3 +25,5 @@ Run the application with:
 ```
 java -jar target/LedTicker-jar-with-dependencies.jar
 ```
+
+How to keep processes running on unix after ssh logout: https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
