@@ -27,3 +27,9 @@ java -jar target/LedTicker-jar-with-dependencies.jar
 ```
 
 How to keep processes running on unix after ssh logout: https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
+
+RXTX Raspberry PI: http://angryelectron.com/rxtx-on-raspbian/
+And then run the ticker via:
+```
+java.library.path=/usr/lib/jni -jar target/LedTicker-jar-with-dependencies.jar
+```
