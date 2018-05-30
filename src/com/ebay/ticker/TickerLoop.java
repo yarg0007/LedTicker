@@ -33,7 +33,7 @@ public class TickerLoop extends Thread {
 
 	public TickerLoop() {
 
-		serialConnection = new SerialConnection(null);
+		serialConnection = new SerialConnection("/dev/ttyUSB0");
 		try {
 			serialConnection.openConnection();
 		} catch (NoSuchPortException e) {
