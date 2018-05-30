@@ -33,3 +33,12 @@ And then run the ticker via:
 ```
 java -Djava.library.path=/usr/lib/jni -jar target/LedTicker-jar-with-dependencies.jar
 ```
+
+
+ssh into the remote machine
+start tmux by typing tmux into the shell
+start the process you want inside the started tmux session
+leave/detach the tmux session by typing Ctrl+b and then d
+You can now safely log off from the remote machine, your process will keep running inside tmux. When you come back again and want to check the status of your process you can use tmux attach to attach to your tmux session.
+
+If you want to have multiple sessions running side-by-side, you should name each session using Ctrl+b and $. You can get a list of the currently running sessions using tmux list-sessions.
