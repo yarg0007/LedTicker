@@ -24,8 +24,6 @@ public class LedTicker {
 			}
 		}
 
-		// TODO: publish ip address and network information for button press
-
 		ticker.startTickerLoop();
 
 		if (tickerGui == null) {

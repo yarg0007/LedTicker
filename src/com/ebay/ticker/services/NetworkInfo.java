@@ -8,7 +8,7 @@ import java.util.Enumeration;
 
 public class NetworkInfo implements ServiceOutput, ServiceState {
 
-	static final String[] networkPrefixes = new String[] {"et", "en"};
+	static final String[] networkPrefixes = new String[] {"et", "en", "wl"};
 
 	public static void main(String args[]) throws SocketException {
 		NetworkInfo networkInfo = new NetworkInfo();
@@ -48,7 +48,7 @@ public class NetworkInfo implements ServiceOutput, ServiceState {
 				}
 			}
 		}
-
+		System.out.println("We should see: " + info.toString());
 		return info.toString();
 	}
 
